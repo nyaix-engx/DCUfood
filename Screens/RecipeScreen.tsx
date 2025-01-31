@@ -29,9 +29,10 @@ function RecipeScreen() {
         <View style={styles.recipe_name_wrapper}>
           <TextInput
             value={text}
-            mode="outlined"
+            // mode="outlined"
             label="Recipe Name"
-            contentStyle={styles.recipe_name_text}
+            style={styles.recipe_name_text}
+            contentStyle={styles.recipe_content}
             onChangeText={text => setText(text)}
           />
           <FAB
@@ -96,15 +97,21 @@ const styles = StyleSheet.create({
   recipe_name_wrapper: {
     display: 'flex',
     flexDirection: 'row',
+    // backgroundColor: 'purple',
     columnGap: RFValue(5),
   },
   recipe_name_text: {
-    // flex: 1,
+    flex: 1,
+    // borderRadius: RFValue(10),
     width: '100%',
+  },
+  recipe_content: {
+    borderRadius: RFValue(10),
+    // backgroundColor: 'orange',
   },
   recipe_name_button: {},
   recipe_photo: {
-    flex: 3.5,
+    flex: 4.5,
     width: '100%',
     marginTop: RFValue(20),
   },

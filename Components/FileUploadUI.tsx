@@ -13,12 +13,12 @@ import {RFValue} from 'react-native-responsive-fontsize';
 
 const FileUploadUI = () => {
   const [files, setFiles] = useState<any[]>([]);
-
+  console.log(files);
   const handlePickFile = async () => {
     try {
       const result = await launchImageLibrary({
         mediaType: 'photo', // Only allow image selection
-        selectionLimit: 0, // Allows multiple files to be selected
+        selectionLimit: 1, // Allows multiple files to be selected
       });
 
       if (result.didCancel) {
@@ -54,7 +54,7 @@ const FileUploadUI = () => {
 
   const renderFileItem = ({item}: {item: any}) => (
     <View style={styles.fileItem}>
-      <Icon name="image" size={RFValue(24)} color="#FF8800" />
+      <Icon name="image" size={RFValue(20)} color="#FF8800" />
       <View style={styles.fileInfo}>
         <Text style={styles.fileName}>{item.name}</Text>
         <Text style={styles.fileSize}>
@@ -63,10 +63,10 @@ const FileUploadUI = () => {
       </View>
       <View style={styles.actions}>
         <TouchableOpacity>
-          <Icon name="download" size={RFValue(24)} color="#000" />
+          <Icon name="download" size={RFValue(20)} color="#000" />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleRemoveFile(item.uri)}>
-          <Icon name="trash" size={RFValue(24)} color="#FF0000" />
+          <Icon name="trash" size={RFValue(20)} color="#FF0000" />
         </TouchableOpacity>
       </View>
     </View>
@@ -80,22 +80,12 @@ const FileUploadUI = () => {
         <Text style={styles.uploadText}>Tap to choose images</Text>
         <Text style={styles.uploadInfo}>Max file size: 10 MB</Text>
       </TouchableOpacity>
-      {files.length > 0 && (
-        <FlatList
-          data={files}
-          renderItem={renderFileItem}
-          keyExtractor={item => item.uri}
-        />
-      )}
-      {files.length > 0 && (
-        <TouchableOpacity
-          style={styles.removeAllButton}
-          onPress={() => setFiles([])}>
-          <Text style={styles.removeAllText}>
-            Remove file download from this task
-          </Text>
-        </TouchableOpacity>
-      )}
+
+      <FlatList
+        data={files}
+        renderItem={renderFileItem}
+        keyExtractor={item => item.uri}
+      />
     </View>
   );
 };
@@ -117,7 +107,10 @@ const styles = StyleSheet.create({
     paddingVertical: RFValue(10),
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: RFValue(20),
+    marginBottom: RFValue(5),
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
   },
   uploadText: {
     fontSize: RFValue(16),
@@ -146,28 +139,17 @@ const styles = StyleSheet.create({
     marginLeft: RFValue(10),
   },
   fileName: {
-    fontSize: RFValue(16),
+    fontSize: RFValue(9),
     fontWeight: '500',
   },
   fileSize: {
-    fontSize: RFValue(12),
+    fontSize: RFValue(9),
     color: '#666',
+    marginTop: RFValue(2),
   },
   actions: {
     flexDirection: 'row',
     gap: RFValue(10),
-  },
-  removeAllButton: {
-    marginTop: RFValue(20),
-    padding: RFValue(15),
-    backgroundColor: '#FF0000',
-    borderRadius: RFValue(10),
-    alignItems: 'center',
-  },
-  removeAllText: {
-    color: '#FFF',
-    fontSize: RFValue(16),
-    fontWeight: 'bold',
   },
 });
 
