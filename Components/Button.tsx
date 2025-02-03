@@ -10,14 +10,13 @@ import {RFValue} from 'react-native-responsive-fontsize';
 
 interface ButtonProps {
   onPress: (event?: GestureResponderEvent) => void; // Type for the onPress function
+  render: () => JSX.Element;
 }
 
-const Button: React.FC<ButtonProps> = ({onPress}) => {
+const CustomButton: React.FC<ButtonProps> = ({onPress, render}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Text>
-        <Icon name="plus" size={RFValue(16)} color="#900" />
-      </Text>
+      {render()}
     </TouchableOpacity>
   );
 };
@@ -27,11 +26,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: RFValue(50),
-    height: RFValue(48),
     borderRadius: RFValue(15),
     backgroundColor: 'white',
   },
 });
 
-export default Button;
+export default CustomButton;

@@ -1,5 +1,7 @@
 import {View, Text, StyleSheet} from 'react-native';
 import {RFValue} from 'react-native-responsive-fontsize';
+import Icon from 'react-native-vector-icons/FontAwesome6';
+
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Button from '../Components/Button';
 import Animated from 'react-native-reanimated';
@@ -23,7 +25,14 @@ function HomeScreen({navigation}: {navigation: any}) {
           <Text style={styles.header_content_left_text}>Welcome Neil</Text>
         </View>
         <View style={styles.header_content_right}>
-          <Button onPress={handleAddRecipe} />
+          <Button
+            onPress={handleAddRecipe}
+            render={() => (
+              <View style={styles.plus_view}>
+                <Icon name="plus" size={RFValue(16)} color="#900" />
+              </View>
+            )}
+          />
         </View>
       </View>
       <View style={styles.content}>
@@ -80,6 +89,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  plus_view: {
+    width: RFValue(50),
+    height: RFValue(48),
+    backgroundColor: 'white',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: RFValue(10),
   },
   content: {
     flex: 1,

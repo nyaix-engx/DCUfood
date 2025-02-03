@@ -9,9 +9,9 @@ import {
   Platform,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Button} from 'react-native-paper';
 import {RichEditor, RichToolbar} from 'react-native-pell-rich-editor';
 import {RFValue} from 'react-native-responsive-fontsize';
+import {Button} from 'react-native-paper';
 import {TextInput, FAB} from 'react-native-paper';
 import FileUploadUI from '../Components/FileUploadUI';
 
@@ -29,17 +29,23 @@ function RecipeScreen() {
         <View style={styles.recipe_name_wrapper}>
           <TextInput
             value={text}
-            // mode="outlined"
+            mode="outlined"
             label="Recipe Name"
+            // mode="flat"
+            underlineColor="transparent" // Hides underline
+            activeUnderlineColor="transparent"
+            theme={{
+              colors: {
+                primary: 'blue', // Focused outline color
+                outline: 'gray', // Unfocused outline color
+                background: 'white', // Background color
+                placeholder: 'red', // Placeholder color
+                text: 'black', // Text color
+              },
+            }}
             style={styles.recipe_name_text}
             contentStyle={styles.recipe_content}
             onChangeText={text => setText(text)}
-          />
-          <FAB
-            icon="note-edit-outline"
-            mode="flat"
-            style={styles.recipe_name_button}
-            onPress={() => console.log('Pressed')}
           />
         </View>
       </View>
@@ -90,6 +96,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     rowGap: RFValue(10),
   },
+  edit_view: {},
   recipe_name: {
     flex: 1,
     width: '100%',
@@ -102,7 +109,7 @@ const styles = StyleSheet.create({
   },
   recipe_name_text: {
     flex: 1,
-    // borderRadius: RFValue(10),
+    backgroundColor: 'white',
     width: '100%',
   },
   recipe_content: {

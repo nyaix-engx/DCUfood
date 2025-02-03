@@ -33,7 +33,7 @@ const FileUploadUI = () => {
           size: result.assets[0]?.fileSize || 0,
         };
 
-        setFiles(prevFiles => [...prevFiles, newFile]);
+        setFiles([newFile]);
       }
     } catch (err) {
       console.error('ImagePicker Error: ', err);
@@ -77,7 +77,7 @@ const FileUploadUI = () => {
       <Text style={styles.title}>Upload Files</Text>
       <TouchableOpacity style={styles.uploadZone} onPress={handlePickFile}>
         <Icon name="add-circle-outline" size={RFValue(40)} color="#999" />
-        <Text style={styles.uploadText}>Tap to choose images</Text>
+        <Text style={styles.uploadText}>Tap to choose image</Text>
         <Text style={styles.uploadInfo}>Max file size: 10 MB</Text>
       </TouchableOpacity>
 
@@ -100,25 +100,26 @@ const styles = StyleSheet.create({
     marginBottom: RFValue(10),
   },
   uploadZone: {
-    borderWidth: 1,
-    borderColor: '#DDD',
+    // borderWidth: 1,
+    // borderColor: '#DDD',
     borderRadius: RFValue(10),
-    backgroundColor: 'grey',
+    backgroundColor: '#f0f0f0',
     paddingVertical: RFValue(10),
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: RFValue(5),
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 3,
     elevation: 2,
   },
   uploadText: {
-    fontSize: RFValue(16),
+    fontSize: RFValue(14),
     color: '#666',
     marginTop: RFValue(10),
   },
   uploadInfo: {
-    fontSize: RFValue(12),
+    fontSize: RFValue(10),
     color: '#999',
   },
   fileItem: {
