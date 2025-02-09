@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Animated, {Easing, FadeInUp, FadeOutLeft} from 'react-native-reanimated';
-import {View, Text, FlatList, Switch, Button, StyleSheet} from 'react-native';
+import {Text, FlatList, Switch, Button, StyleSheet} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 type Chef = {
